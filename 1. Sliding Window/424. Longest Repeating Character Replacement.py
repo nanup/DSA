@@ -3,9 +3,9 @@
 # find the length of the longest substring having the same letters after replacement.
 
 def lengthOfLongestSubstring(str, k):
-	charFrequency = {}
+	maxLength, maxRepeat = 0, 0
 
-	maxLength = 0
+	charFrequency = {}
 
 	windowStart = 0
 
@@ -17,23 +17,23 @@ def lengthOfLongestSubstring(str, k):
 
 		charFrequency[rightChar] += 1
 
-		while len(charFrequency) > 2 or charFrequency[rightChar] > k:
-			rightChar = str[windowStart]
+		maxRepeat = max(maxRepeat, charFrequency[rightChar])
 
-			charFrequency[rightChar] -= 1
+		# maxRepeat tracks the count of max repeating char
+		# that implies all other elements of subarray less than
+		# maxRepeat should be replaced and hence, less than k in number
 
-			if charFrequency[rightChar] == 0:
-				del charFrequency[rightChar]
+		if windowEnd - windowStart + 1 - maxRepeat > k:
+			leftChar = str[windowStart]
+
+			charFrequency[leftChar] -= 1
 
 			windowStart += 1
-
-			if len(charFrequency) == 1:
-				break
 
 		maxLength = max(maxLength, windowEnd - windowStart + 1)
 
 	return maxLength
-
+ 
 def main():
 	print(lengthOfLongestSubstring("aabccbb", 2))
 
