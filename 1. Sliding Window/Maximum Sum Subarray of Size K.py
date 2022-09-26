@@ -10,7 +10,7 @@ def maxSubArrayOfSizeK(k, arr):
 	for windowEnd in range(len(arr)):
 		windowSum += arr[windowEnd] # adds the new end element to the windowSum
 
-		if windowEnd >= (k - 1): # checks if the size of subarray is at least k
+		if windowEnd >= (k - 1):
 			maxSum = max(windowSum, maxSum)
 
 			windowSum -= arr[windowStart] # subtracts the start element from the windowSum
