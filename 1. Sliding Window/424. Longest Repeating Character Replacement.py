@@ -38,3 +38,6 @@ def main():
 	print(lengthOfLongestSubstring("aabccbb", 2))
 
 main()
+
+# time complexity: O(N)
+# space complexity: O(1)
