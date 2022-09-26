@@ -35,3 +35,6 @@ def main():
 	print("Length of longest substring: " + str(longestSubstringWithKDistinct("araaci", 2)))
 
 main()
+
+# time complexity: O(N)
+# space complexity: O(K)
