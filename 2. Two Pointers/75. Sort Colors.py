@@ -4,6 +4,7 @@ def dutchFlagSort(arr):
 	left, middle, right = 0, 0, len(arr) - 1
 
 	while middle <= right:
+		# middle needs to visit every positon and so <= instead of <
 		if arr[middle] == 0:
 			arr[middle], arr[left] = arr[left], arr[middle]
 			middle += 1
@@ -14,6 +15,7 @@ def dutchFlagSort(arr):
 		else:
 			arr[middle], arr[right] = arr[right], arr[middle]
 			right -= 1
+			# no middle becuase new char needs to be checked by middle
 
 	return arr
 
