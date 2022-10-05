@@ -11,21 +11,46 @@ class job:
 		self.end = end
 		self.cpu_load = cpu_load
 
+	def __lt__(job1, job2):
+		if job1.start < job2.start:
+			return job1
+		else:
+			return job2
+
 
 def find_max_cpu_load(jobs):
 
 	maxCPULoad = 0
 
+	# for i in range(len(jobs)):
+	# 	CPULoad = jobs[i].cpu_load
+
+	# 	for j in range(len(jobs)):
+	# 		if i != j:
+	# 			if jobs[i].start < jobs[j].start and jobs[i].end > jobs[j].start:
+	# 				CPULoad += jobs[j].cpu_load
+
+	# 	maxCPULoad = max(maxCPULoad, CPULoad)
+
+	jobs.sort(key = lambda x: x.start)
+
+	minHeap = []
+
+	cpuLoad = 0
+
 	for i in range(len(jobs)):
-		CPULoad = jobs[i].cpu_load
+		job = jobs[i]
 
-		for j in range(len(jobs)):
-			if i != j:
-				if jobs[i].start < jobs[j].start and jobs[i].end > jobs[j].start:
-					CPULoad += jobs[j].cpu_load
+		while len(minHeap) > 0 and job.start >= minHeap[0].end:
+			cpuLoad -= minHeap[0].cpu_load
+			heappop(minHeap)
 
-		maxCPULoad = max(maxCPULoad, CPULoad)
+		heappush(minHeap, job)
 
+		cpuLoad += job.cpu_load
+		
+		maxCPULoad = max(maxCPULoad, cpuLoad)
+			
 	return maxCPULoad
 
 def main():
@@ -41,3 +66,6 @@ main()
 
 # time complexity: O(N ^ 2)
 # space complexity: O(1)
+
+# time complexity: O(N logN)
+# space complexity: O(N)
