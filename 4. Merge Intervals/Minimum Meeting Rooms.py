@@ -9,32 +9,15 @@ class Meeting:
 		self.start = start
 		self.end = end
 
+	def __lt__(meeting1, meeting2):
+		if meeting1.start < meeting2.start:
+			return meeting1
+		else:
+			return meeting2
+
 
 def min_meeting_rooms(meetings):
 	meetings.sort(key=lambda x: x.start)
-
-	# minRooms = 1
-
-	# end = meetings[0].end
-
-	# for i in range(1, len(meetings)):
-	# 	rooms = 1
-
-	# 	copy = i
-
-	# 	meeting = meetings[i]
-
-	# 	while i < len(meetings) and end > meeting.start:
-	# 		rooms += 1
-	# 		i += 1
-
-	# 	if i != len(meetings):
-	# 		end = meetings[i].end
-
-	# 	if rooms > minRooms:
-	# 		minRooms = rooms
-
-	# return minRooms
 
 	minRooms = 0
 
@@ -65,3 +48,6 @@ def main():
 
 
 main()
+
+# time complexity: O(NlogN)
+# space complexityL O(N)
