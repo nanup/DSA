@@ -28,6 +28,9 @@ class TreeNode:
 
 
 def connect_level_order_siblings(root):
+	if not root:
+		return root
+		
 	queue = deque()
 
 	queue.append(root)
