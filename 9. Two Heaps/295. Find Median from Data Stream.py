@@ -8,8 +8,9 @@ from heapq import *
 
 
 class MedianOfAStream:
-	maxHeap = []
-	minHeap = []
+	def __init__(self):
+		self.maxHeap = []
+		self.minHeap = []
 
 	def insert_num(self, num):
 		if not self.maxHeap or -self.maxHeap[0] >= num:
