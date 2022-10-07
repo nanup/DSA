@@ -9,16 +9,34 @@ class TreeNode:
 
 
 def find_paths(root, sum):
-	if not root:
-		return 0
+	# if not root:
+	# 	return 0
 
-	paths = 0
+	# paths = 0
+
+	# if root.val == sum and not root.left and not root.right:
+	# 	paths += 1
+	# 	return paths
+	
+	# return find_paths(root.left, sum - root.val) + find_paths(root.right, sum - root.val)
+
+	allPaths = []
+	findPathsRecursive(root, sum, allPaths, [])
+	return allPaths
+
+def findPathsRecursive(root, sum, allPaths, currentPath):
+	if not root:
+		return None
+
+	currentPath.append(root.val)
 
 	if root.val == sum and not root.left and not root.right:
-		paths += 1
-		return paths
-	
-	return find_paths(root.left, sum - root.val) + find_paths(root.right, sum - root.val)
+		allPaths.append(list(currentPath))
+
+	findPathsRecursive(root.left, sum - root.val, allPaths, currentPath)
+	findPathsRecursive(root.right, sum - root.val, allPaths, currentPath)
+
+	del currentPath[-1]
 
 
 def main():
