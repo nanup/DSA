@@ -32,7 +32,7 @@ class MaxTreeNode():
 
 		pathSum = currentNode.val + leftPathSum + rightPathSum
 
-		self.maxPathSum = max(self.maxPathSum, pathSum, 0)
+		self.maxPathSum = max(self.maxPathSum, pathSum)
 
 		return currentNode.val + max(leftPathSum, rightPathSum)
 
