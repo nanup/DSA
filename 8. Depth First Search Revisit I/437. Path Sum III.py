@@ -27,11 +27,11 @@ def countPaths(currentNode, S, currentPath):
 		if pathSum == S:
 			paths += 1
 
-	if not currentNode.right and not currentNode.left:
-		return paths
+	paths += countPaths(currentNode.left, S, currentPath) + countPaths(currentNode.right, S, currentPath)
 
-	return countPaths(currentNode.left, S, currentPath) + countPaths(currentNode.right, S, currentPath)
+	del currentPath[-1]
 
+	return paths
 
 def main():
 	root = TreeNode(12)
