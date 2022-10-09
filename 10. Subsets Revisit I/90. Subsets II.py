@@ -1,6 +1,7 @@
 # Given a set of numbers that might contain duplicates, find all of its distinct subsets.
 
 def find_subsets(nums):
+	nums.sort()
 	subsets = []
 
 	# subsets.append([])
@@ -46,5 +47,5 @@ main()
 # time complexity: O(2 ^ N)
 # space complexity: O(2 ^ N)
 
-# time complexity: O(N)
+# time complexity: O(N log N)
 # space complexity: O(N)
