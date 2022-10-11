@@ -6,10 +6,14 @@
 # If the ‘key’ is not present return [-1, -1].
 
 def find_range(arr, key):
-	result = [- 1, -1]
+	result = [-1, -1]
+	result[0] = binary_search(arr, key, False)
+	if result[0] != -1:
+		result[1] = binary_search(arr, key, True)
+	return result
 
-	if key > arr[len(arr) - 1] or key < arr[0]:
-		return result
+def binary_search(arr, key, findMaxIndex):
+	keyIndex = -1
 
 	start, end = 0, len(arr) - 1
 
@@ -17,19 +21,17 @@ def find_range(arr, key):
 		mid = (end + start) // 2
 
 		if key == arr[mid]:
-			while arr[mid] == arr[start] and start > 0:
-				start -= 1
-
-			while arr[mid] == arr[end] and end < len(arr):
-				end += 1
-
-			return [start + 1, end - 1]
+			keyIndex = mid
+			if findMaxIndex:
+				start = mid + 1
+			else:
+				end = mid - 1
 		elif key < arr[mid]:
 			end = mid - 1
 		else:
 			start = mid + 1
 
-	return [-1, -1]
+	return keyIndex
 
 
 def main():
