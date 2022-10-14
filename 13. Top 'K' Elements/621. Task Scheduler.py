@@ -6,7 +6,6 @@
 
 # If at any time the server can’t execute any task then it must stay idle.
 from heapq import *
-from collections import deque
 
 
 def schedule_tasks(tasks, k):
